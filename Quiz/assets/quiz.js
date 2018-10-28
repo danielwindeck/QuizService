@@ -17,6 +17,7 @@ $(function(){
             console.info("ajax started");
 
             $(".quiz-screen").html("");
+            // khfgjkgyf
             $(".loader").removeClass("hidden");
 
 
