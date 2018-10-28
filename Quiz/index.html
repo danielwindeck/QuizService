@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/animation.css">
+    <script src="assets/jQuery/jQuery-3.3.1.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.js"></script>
+    <script src="assets/lodash/lodash.js"></script>
+</head>
+<body>
+
+<div class="container-fluid bg-info">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Header -->
+            <div class="modal-header">
+                <h3 class="header-text">Neues Spiel Starten</h3>
+            </div>
+
+            <div class="modal-body">
+
+                <img src="resources/ajaxLoader.gif" alt="" class="loader hidden"/>
+
+                <!-- Start Screen -->
+                <div class="quiz quiz-screen" data-toggle="buttons">
+                    <label class="element-animation1 btn btn-lg btn-primary btn-block" id="startGame">
+                        <span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>
+                        <input type="radio">Starten
+                    </label>
+                </div>
+
+                <!-- Quiz Screen -->
+                <!--<div class="quiz quiz-screen hidden quiz-screen" id="quiz" data-toggle="buttons">-->
+                    <!--<label class="element-animation1 btn btn-lg btn-primary btn-block answere"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="1">1 One</label>-->
+                    <!--<label class="element-animation2 btn btn-lg btn-primary btn-block answere"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="2">2 Two</label>-->
+                    <!--<label class="element-animation3 btn btn-lg btn-primary btn-block answere"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="3">3 Three</label>-->
+                    <!--<label class="element-animation4 btn btn-lg btn-primary btn-block answere"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="4">4 Four</label>-->
+                <!--</div>-->
+
+                <!-- End Screen -->
+                <!--<div class="quiz end-screen hidden" data-toggle="buttons">-->
+                    <!--<label class="element-animation1 btn btn-lg btn-primary btn-block" id="newGame">-->
+                        <!--<span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>-->
+                        <!--<input type="radio">Nochmal Spielen-->
+                    <!--</label>-->
+                <!--</div>-->
+
+            </div>
+            <div class="modal-footer text-muted">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="assets/quiz.js"></script>
+<script src="assets/main.js"></script>
+
+</body>
+</html>
