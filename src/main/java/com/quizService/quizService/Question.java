@@ -7,12 +7,52 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Question {
 
     @Id
-    public String id;
+    private String id;
 
-    public String difficulty;
-    public String category;
-    public String name;
-    public Object answers;
+    private String difficulty;
+    private String category;
+    private String name;
+    private Object answers;
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(final String id) {
+        this.id = id;
+    }
+
+    public String getDifficulty() {
+        return this.difficulty;
+    }
+
+    public void setDifficulty(final String difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public String getCategory() {
+        return this.category;
+    }
+
+    public void setCategory(final String category) {
+        this.category = category;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(final String name) {
+        this.name = name;
+    }
+
+    public Object getAnswers() {
+        return this.answers;
+    }
+
+    public void setAnswers(final Object answers) {
+        this.answers = answers;
+    }
 
     public Question() {}
 

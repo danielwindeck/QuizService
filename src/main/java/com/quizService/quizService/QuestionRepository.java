@@ -8,4 +8,12 @@ public interface QuestionRepository extends MongoRepository<Question, String> {
 
     List<Question> findByDifficulty(String difficulty);
 
+    List<Question> findByCategory(String category);
+
+    Question findOneByName(String name);
+
+    Question findOneByAnswers(Object answers);
+
+    Question findOneById(String Id);
+
 }
