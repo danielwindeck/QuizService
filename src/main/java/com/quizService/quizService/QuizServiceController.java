@@ -29,8 +29,7 @@ public class QuizServiceController {
         if(random == null) {
             return repository.findByDifficulty(difficulty);
         }
-        // FIXME return Value muss auf eine MongoDB Random geändert werden
-        return repository.findByDifficulty(difficulty);
+        return repository.getRandomQuestionByDifficulty(difficulty);
     }
 
     @GetMapping("/questions/category/{category}")
@@ -39,8 +38,7 @@ public class QuizServiceController {
         if(random == null) {
             return repository.findByCategory(category);
         }
-        // FIXME return Value muss auf eine MongoDB Random geändert werden
-        return repository.findByCategory(category);
+        return repository.getRandomQuestionByCategory(category);
     }
 
     @GetMapping("/questions/name/{name}")
