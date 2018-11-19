@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:63342")
 @RestController
 @RequestMapping("quizService/api/v1")
 public class QuizServiceController {
@@ -12,7 +13,6 @@ public class QuizServiceController {
     @Autowired
     private QuestionRepository repository;
 
-    @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping("/questions")
     public List<Question> getAllQuestions() {
         return repository.findAll();

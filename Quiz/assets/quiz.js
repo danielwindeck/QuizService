@@ -1,17 +1,12 @@
 $(function(){
 
-    var quizTemplate = '<label class="element-animation1 btn btn-lg btn-primary btn-block answere"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value=ANSWER1>ANSWER1</label>' +
-        '<label class="element-animation2 btn btn-lg btn-primary btn-block answere"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value=ANSWER2>ANSWER2</label>' +
-        '<label class="element-animation3 btn btn-lg btn-primary btn-block answere"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value=ANSWER3>ANSWER3</label>' +
-        '<label class="element-animation4 btn btn-lg btn-primary btn-block answere"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value=ANSWER4>ANSWER4</label>';
+    var quizTemplate = '<label class="element-animation1 btn btn-lg btn-primary btn-block answere"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="ANSWER1">ANSWER1</label>' +
+        '<label class="element-animation2 btn btn-lg btn-primary btn-block answere"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="ANSWER2">ANSWER2</label>' +
+        '<label class="element-animation3 btn btn-lg btn-primary btn-block answere"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="ANSWER3">ANSWER3</label>' +
+        '<label class="element-animation4 btn btn-lg btn-primary btn-block answere"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="ANSWER4">ANSWER4</label>';
 
     var correctValue = "";
     var questionDifficulty = 1;
-    /*
-    * Beim Start des Spiels den Inhalt von .quizScreen leeren
-    * Beim korrekten beantworten der Frage neuer ajax requestm dabei soll der akuelle quizScreen nur in seinem Inhalt geupdatet werden
-    * */
-
 
     $(document)
         .ajaxStart(function () {
@@ -20,31 +15,31 @@ $(function(){
             $(".quiz-screen").html("");
             $(".loader").removeClass("hidden");
 
-
-           // $(".start-screen").addClass("hidden");
-
         }).ajaxStop(function () {
             console.info("ajax ended");
     });
 
-
     //Start Game
     $("#startGame").on("click", function() {
+        getQuestion("difficulty/");
+    });
+
+    function getQuestion(requestParam) {
         $.ajax({
-            url: "http://localhost:8080/question",
-            data: {difficulty: questionDifficulty},
+            url: "http://localhost:8080/quizService/api/v1/questions/" + requestParam + questionDifficulty,
+            data: {random: true},
             success: function(data) {
                 displayQuestion(data);
             },
             error: function() {
-              alert("error");
+                alert("error");
             },
             dataType: "json"
         });
-    });
-
+    }
 
     function displayQuestion(question) {
+        question = question[0];
         $(".loader").addClass("hidden");
 
         var answers = question.answers;
@@ -56,8 +51,6 @@ $(function(){
         var answereElement = resolveTemplate(answers);
 
         $(".quiz-screen").append(answereElement);
-
-        console.info(correctValue);
     }
 
     function resolveTemplate(answers) {
@@ -95,12 +88,18 @@ $(function(){
         var element = $(event.target);
         if(element.hasClass("answere")) {
             var userValue = element.find("input").val();
-
             if(userValue === correctValue) {
                 console.info("Correct");
+                questionDifficulty++;
+                if(questionDifficulty === 4) {
+                    console.info("Spiel zu Ende, keine Fragen mehr");
+                    location.reload();
+                }
+                getQuestion("difficulty/");
             }
             else {
                 console.info("Wrong");
+                location.reload();
             }
         }
     });
